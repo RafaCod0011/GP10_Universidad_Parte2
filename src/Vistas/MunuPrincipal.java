@@ -15,6 +15,8 @@ public class MunuPrincipal extends javax.swing.JFrame {
      */
     public MunuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Fomulario Universidad");
     }
 
     /**
@@ -26,21 +28,88 @@ public class MunuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        escritorio = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        formAlumno = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        formMateria = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 690, Short.MAX_VALUE)
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 510));
+
+        jMenu1.setText("Alumno");
+
+        formAlumno.setText("Formulario de alumnos");
+        formAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formAlumnoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(formAlumno);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Materia");
+
+        formMateria.setText("Formulario de materia");
+        formMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formMateriaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(formMateria);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formAlumnoActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormAlumno alumno= new FormAlumno();
+        alumno.setVisible(true);
+        escritorio.add(alumno);
+        escritorio.moveToFront(alumno);
+    }//GEN-LAST:event_formAlumnoActionPerformed
+
+    private void formMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formMateriaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormMateria materia= new FormMateria();
+        materia.setVisible(true);
+        escritorio.add(materia);
+        escritorio.moveToFront(materia);
+    }//GEN-LAST:event_formMateriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +147,12 @@ public class MunuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenuItem formAlumno;
+    private javax.swing.JMenuItem formMateria;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
