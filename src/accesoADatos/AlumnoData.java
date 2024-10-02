@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package accesoADatos;
 
 import entidades.Alumno;
@@ -15,13 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Rafa
- */
+
 public class AlumnoData {
    
-        private Connection con = null;
+    private Connection con = null;
     
     public AlumnoData(){
         con = (Connection) Conexion.getConexion();

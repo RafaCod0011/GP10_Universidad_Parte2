@@ -2,37 +2,37 @@ package entidades;
 
 public class Materia {
     // ATRIBUTOS
-    private int idMatiera;
+    private int idMateria;
     private String nombre;
-    private int anioMateria;
-    private boolean activo;
+    private int anio;
+    private boolean estado;
 
 // CONSTRUCTOR VACIO
     public Materia(){
     }
 // CONSTRUCTOR LLENO
-    public Materia(int idMatiera, String nombre, int anioMateria, boolean activo) {
-        this.idMatiera = idMatiera;
+    public Materia(int idMateria, String nombre, int anio, boolean estado) {
+        this.idMateria = idMateria;
         this.nombre = nombre;
-        this.anioMateria = anioMateria;
-        this.activo = activo;
+        this.anio = anio;
+        this.estado = estado;
     }
 
     // CONSTRUCTOR SIN ID
-    public Materia(String nombre, int anioMateria, boolean activo) {
+    public Materia(String nombre, int anio, boolean estado) {
         this.nombre = nombre;
-        this.anioMateria = anioMateria;
-        this.activo = activo;
+        this.anio = anio;
+        this.estado = estado;
     }
     
     // GETTER AND SETTERS
 
-    public int getIdMatiera() {
-        return idMatiera;
+    public int getIdMateria() {
+        return idMateria;
     }
 
-    public void setIdMatiera(int idMatiera) {
-        this.idMatiera = idMatiera;
+    public void setIdMateria(int idMateria) {
+        this.idMateria = idMateria;
     }
 
     public String getNombre() {
@@ -44,24 +44,24 @@ public class Materia {
     }
 
     public int getAnioMateria() {
-        return anioMateria;
+        return anio;
     }
 
-    public void setAnioMateria(int anioMateria) {
-        this.anioMateria = anioMateria;
+    public void setAnioMateria(int anio) {
+        this.anio = anio;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     // TO STRING
     @Override
     public String toString() {
-        return "Materia{" + "idMatiera=" + idMatiera + ", nombre=" + nombre + ", anioMateria=" + anioMateria + ", activo=" + activo + '}';
+        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", anio=" + anio + ", estado=" + estado + '}';
     }
 }

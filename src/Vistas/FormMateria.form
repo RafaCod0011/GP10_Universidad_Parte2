@@ -65,7 +65,7 @@
                                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                           <Component id="jbBuscar" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="tbAño" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                                      <Component id="tbAnio" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                                       <Component id="jrEstado" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -89,9 +89,9 @@
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace pref="88" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tbCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tbCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -101,7 +101,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlAño" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tbAño" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tbAnio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -150,10 +150,13 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tbCodigo">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tbNombre">
         </Component>
-        <Component class="javax.swing.JTextField" name="tbA&#xf1;o">
+        <Component class="javax.swing.JTextField" name="tbAnio">
         </Component>
         <Component class="javax.swing.JButton" name="jbBuscar">
           <Properties>
@@ -176,6 +179,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGuardarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbSalir">
           <Properties>
