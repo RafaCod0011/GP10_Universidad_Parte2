@@ -26,7 +26,7 @@ public class MateriaData {
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, materia.getNombre());
-            ps.setInt(2, materia.getAnioMateria());
+            ps.setInt(2, materia.getAnio());
             ps.setBoolean(3, materia.isEstado());
             ps.executeUpdate();
             
@@ -69,11 +69,11 @@ public class MateriaData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Materia materia = new Materia(rs.getInt("idMateria"), rs.getString("nombre"),
-                rs.getInt("anio"), rs.getBoolean("activa"));
+                rs.getInt("anio"), rs.getBoolean("estado"));
                 materias.add(materia);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error de Base "+ e.getMessage());
         }
         return materias;
     }
@@ -84,6 +84,7 @@ public class MateriaData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado la Materia N°" + id);
         } catch (SQLException e) {
             e.printStackTrace();
         }

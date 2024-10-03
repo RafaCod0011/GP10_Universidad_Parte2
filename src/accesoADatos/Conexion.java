@@ -16,6 +16,7 @@ public class Conexion {
     
     private Conexion() {}
 
+    
     public static Connection getConexion() {
 
         if (connection == null) {
@@ -24,7 +25,17 @@ public class Conexion {
                 connection = DriverManager.getConnection(URL + DB + "?useLegacyDatetimeCode=false&serverTimezone=UTC", 
                                                           USUARIO, PASSWORD);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al conectarse a la BD " + ex.getMessage());
+                if (ex.getMessage().contains("Communications link failure") || 
+                    ex.getMessage().contains("Connection refused") ||
+                    ex.getMessage().contains("Socket fail to connect")) {
+                    JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos. Verifique que el servidor esté iniciado.", 
+                                                  "Error de conexión", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+//            } catch (NullPointerException e) {
+//                JOptionPane.showMessageDialog(null, "Error: No hay conexión a la base de datos. Verifique la conexión.", 
+//                                          "Error de conexión", JOptionPane.ERROR_MESSAGE);
             } catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Error al cargar los Drivers " + ex.getMessage());
             }

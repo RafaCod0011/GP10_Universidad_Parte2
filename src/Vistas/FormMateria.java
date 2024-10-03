@@ -47,10 +47,25 @@ public class FormMateria extends javax.swing.JInternalFrame {
         tbCodigo.setEnabled(false);
 
         jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
 
         jbNuevo.setText("Nuevo");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevoActionPerformed(evt);
+            }
+        });
 
         jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
 
         jbGuardar.setText("Guardar");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +75,11 @@ public class FormMateria extends javax.swing.JInternalFrame {
         });
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,22 +171,140 @@ public class FormMateria extends javax.swing.JInternalFrame {
         
         MateriaData movimientos = new MateriaData();
         
-        if (tbNombre.getText().isEmpty() || tbAnio.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Complete los datos de la Materia","Atención", JOptionPane.ERROR_MESSAGE);
-        }
+        int respuesta = JOptionPane.showConfirmDialog(null
+            ,"Va a grabar una nueva materia ¿Está seguro/a?"
+            ,"Nueva Materia"
+            ,JOptionPane.YES_NO_OPTION);
 
-        int anio= Integer.parseInt(tbAnio.getText());
-        Materia materiaNueva = new Materia(tbNombre.getText().toUpperCase(), anio, jrEstado.isSelected());
-        
-        movimientos.guardarMateria(materiaNueva);
-        
-        //Asignamos el ID al CODIGO
-        int codigo = materiaNueva.getIdMateria();
-        tbCodigo.setText(String.valueOf(codigo));
-        
+        if (respuesta == JOptionPane.YES_OPTION) {
+    
+            try {
 
+                    if (tbNombre.getText().isEmpty() || tbAnio.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Complete los datos de la Materia","Atención", JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        if (jrEstado.isSelected()==false){
+
+                            int materiaActiva = JOptionPane.showConfirmDialog(null
+                                ,"¿Está seguro/a de iniciar la nueva materia como INACTIVA?"
+                                ,"Materia Inactiva"
+                                ,JOptionPane.YES_NO_OPTION);
+
+                            if (materiaActiva == JOptionPane.NO_OPTION) {
+                                jrEstado.isSelected();
+                                jrEstado.requestFocus();
+                                return;
+
+                            }
+
+                        }
+                        int anio= Integer.parseInt(tbAnio.getText());
+                        Materia materiaNueva = new Materia(tbNombre.getText().toUpperCase(), anio, jrEstado.isSelected());
+                        movimientos.guardarMateria(materiaNueva);
+
+                        //Asignamos el ID al CODIGO
+                        tbCodigo.setText(String.valueOf(materiaNueva.getIdMateria()));
+
+        //                for (Materia materia : movimientos.listarMaterias()) {
+        //                    System.out.println(materia.getNombre()+ " - " + materia.getAnio());
+        //                    
+        //                }
+
+                    }
+
+
+
+                } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Corrobore la información ingresada",
+                        "Formato Incorrecto", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+
+           
     }//GEN-LAST:event_jbGuardarActionPerformed
 
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        
+        MateriaData movimientos = new MateriaData();
+                
+        String respuesta = JOptionPane.showInputDialog(null, "Ingrese el código de la materia a buscar:", "Buscar Materia", JOptionPane.PLAIN_MESSAGE);
+        
+        try {
+            if (respuesta==null){
+                return;
+            }
+            int codigoBuscar= Integer.parseInt(respuesta);
+            Materia encontrada = movimientos.buscarMateria(codigoBuscar);
+            if (encontrada==null){
+                JOptionPane.showMessageDialog(null, "No se ha encontrado una materia con el codigo ingresado",
+                "Corrobore la información", JOptionPane.ERROR_MESSAGE);
+            }else{
+                tbCodigo.setText(String.valueOf(encontrada.getIdMateria()));
+                tbNombre.setText(encontrada.getNombre());
+                tbAnio.setText(String.valueOf(encontrada.getAnio()));              
+                jrEstado.setSelected(encontrada.isEstado());
+
+            }
+           
+            
+        } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Corrobore la información ingresada",
+                "Formato Incorrecto", JOptionPane.ERROR_MESSAGE);
+        }
+
+    
+
+        
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+  
+        if (tbCodigo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Busque la materia que desea eliminar",
+            "No se ha encontrado materia seleccionada", JOptionPane.ERROR_MESSAGE);
+        
+        }else{
+        
+                MateriaData movimientos = new MateriaData();   
+                int respuesta = JOptionPane.showConfirmDialog(null
+                    ,"¿Está seguro/a de Eliminar la Materia seleccionada?"
+                    ,"Eliminar Materia"
+                    ,JOptionPane.YES_NO_OPTION);
+
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    int materiaEliminar= Integer.parseInt(tbCodigo.getText());
+                    movimientos.eliminarMateria(materiaEliminar);
+                    Nuevo();
+                }
+        }
+        
+      
+
+        
+        
+        
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        
+        Nuevo();
+
+        
+    }//GEN-LAST:event_jbNuevoActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void Nuevo(){
+
+        tbCodigo.setText("");
+        tbNombre.setText("");
+        tbAnio.setText("");              
+        jrEstado.setSelected(false);
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
