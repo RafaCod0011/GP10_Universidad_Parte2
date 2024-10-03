@@ -30,15 +30,21 @@ public class Conexion {
                     ex.getMessage().contains("Socket fail to connect")) {
                     JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos. Verifique que el servidor esté iniciado.", 
                                                   "Error de conexión", JOptionPane.ERROR_MESSAGE);
-                } else {
+                    System.exit(0);
+                 } else {
                     JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    System.exit(0);
+                    
                 }
 //            } catch (NullPointerException e) {
 //                JOptionPane.showMessageDialog(null, "Error: No hay conexión a la base de datos. Verifique la conexión.", 
 //                                          "Error de conexión", JOptionPane.ERROR_MESSAGE);
             } catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Error al cargar los Drivers " + ex.getMessage());
+                System.exit(0);
+                
             }
+        
         }
 
         return connection;
