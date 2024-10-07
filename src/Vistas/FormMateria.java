@@ -57,7 +57,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
         tbAnio.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
 
-        jbBuscar.setText("Buscar");
+        jbBuscar.setText("Buscar Código");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
