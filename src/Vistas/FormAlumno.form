@@ -19,7 +19,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" pref="524" max="-2" attributes="0"/>
+              <EmptySpace pref="524" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -37,106 +41,107 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="jSeparator1" min="-2" pref="640" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="JLEstado" min="-2" max="-2" attributes="0"/>
-                              <Component id="JLNombre" min="-2" max="-2" attributes="0"/>
-                              <Component id="JLApellido" min="-2" max="-2" attributes="0"/>
-                              <Component id="JLDNI" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tbApellido" min="-2" pref="210" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="tbDNI" min="-2" pref="210" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jbBuscar" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="JLEstado" min="-2" max="-2" attributes="0"/>
+                                              <Component id="JLNombre" min="-2" max="-2" attributes="0"/>
+                                              <Component id="JLApellido" min="-2" max="-2" attributes="0"/>
+                                              <Component id="JLDNI" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="JLFecha" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jrEstado" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="JDate" alignment="0" pref="210" max="32767" attributes="0"/>
+                                              <Component id="tbApellido" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="tbNombre" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="tbDNI" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                          <Component id="jbBuscar" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <Component id="tbNombre" min="-2" pref="210" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="jbNuevo" linkSize="2" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jbEliminar" linkSize="2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jbGuardar" linkSize="2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jbSalir" linkSize="2" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
+                          <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
                       </Group>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jSeparator2" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="jbNuevo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jbEliminar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jbGuardar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                          <Component id="JLFecha" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jrEstado" min="-2" max="-2" attributes="0"/>
-                              <Component id="JDate" min="-2" pref="198" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="JLAlumno" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="JLAlumno" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Component id="JLAlumno" min="-2" pref="20" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jSeparator1" min="-2" pref="20" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tbDNI" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JLDNI" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JLApellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tbApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jSeparator2" min="-2" pref="4" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="JLDNI" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tbDNI" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="JLApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tbApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="jbBuscar" linkSize="1" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JLNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tbNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JLNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="JLEstado" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="JLFecha" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jrEstado" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="JDate" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jrEstado" pref="30" max="32767" attributes="0"/>
+                      <Component id="JLEstado" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="JDate" max="32767" attributes="0"/>
+                      <Component id="JLFecha" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbNuevo" linkSize="1" alignment="3" min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="jbEliminar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbGuardar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbSalir" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -145,41 +150,75 @@
         <Component class="javax.swing.JLabel" name="JLAlumno">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="24" style="0"/>
+              <Font name="Tahoma" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ALUMNO"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="ALUMNOS"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JLDNI">
           <Properties>
-            <Property name="text" type="java.lang.String" value="DNI"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Documento:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JLApellido">
           <Properties>
-            <Property name="text" type="java.lang.String" value="APELLIDO"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Apellido:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JLNombre">
           <Properties>
-            <Property name="text" type="java.lang.String" value="NOMBRE"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Nombres:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JLEstado">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ESTADO"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Activo:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JLFecha">
           <Properties>
-            <Property name="text" type="java.lang.String" value="FECHA DE NACIMIENTO"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Fecha de Nacimiento:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tbDNI">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="12" style="1"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tbApellido">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="12" style="1"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tbNombre">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="12" style="1"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jbBuscar">
           <Properties>
@@ -223,9 +262,12 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="jrEstado">
         </Component>
-        <Component class="javax.swing.JSeparator" name="jSeparator1">
-        </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="JDate">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator2">
         </Component>
       </SubComponents>
     </Container>
