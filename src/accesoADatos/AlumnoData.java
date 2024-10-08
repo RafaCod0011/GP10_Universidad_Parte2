@@ -30,7 +30,13 @@ public class AlumnoData {
             ps.setInt(1,alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            ps.setDate(4, java.sql.Date.valueOf(alumno.getFechaNacimiento()));
+
+            if (alumno.getFechaNacimiento() != null) {
+                ps.setDate(4, java.sql.Date.valueOf(alumno.getFechaNacimiento()));
+            } else {
+                ps.setNull(4, java.sql.Types.DATE);  
+            }
+
             ps.setBoolean(5, alumno.isActivo());
             ps.executeUpdate();
             
@@ -54,11 +60,10 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "ID de Alumno no válido.");
             return;
         }
-
-
-        
+       
         String sql= "UPDATE alumno SET dni= ?, apellido = ?, nombre = ?, fechaNacimiento = ?, estado = ? "
                 + "WHERE idAlumno = ?";
+                
         
         try {
             
@@ -66,7 +71,13 @@ public class AlumnoData {
             ps.setInt(1,alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            ps.setDate(4, java.sql.Date.valueOf(alumno.getFechaNacimiento()));
+
+            if (alumno.getFechaNacimiento() != null) {
+                ps.setDate(4, java.sql.Date.valueOf(alumno.getFechaNacimiento()));
+            } else {
+                ps.setNull(4, java.sql.Types.DATE);  
+            }
+            
             ps.setBoolean(5, alumno.isActivo());
             ps.setInt(6,alumno.getIdAlumno());     
 
@@ -85,24 +96,7 @@ public class AlumnoData {
         }
     }
     
-    public void desactivarAlumno(int id){
-        
-        try {
-            String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            int fila = ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha desactivado el alumno");
-            if(fila == 1) {
-                JOptionPane.showMessageDialog(null, "Se ha desactivado el alumno N°" + id);
-            }
-            ps.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");
-        }
-    }
 
-    
     public Alumno buscarAlumno(int id) {
     Alumno alumno = null;
     String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = ?"; //AND estado = 1
@@ -112,13 +106,17 @@ public class AlumnoData {
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
 
+
         if (rs.next()) {
             alumno = new Alumno();
             alumno.setIdAlumno(id);
             alumno.setDni(rs.getInt("dni"));
             alumno.setApellido(rs.getString("apellido"));
             alumno.setNombre(rs.getString("nombre"));
-            alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+            java.sql.Date fechaNacimientoSQL = rs.getDate("fechaNacimiento");
+            if (fechaNacimientoSQL != null) {
+                alumno.setFechaNacimiento(fechaNacimientoSQL.toLocalDate());
+            }
             alumno.setActivo(true);
         }
         ps.close();
@@ -131,7 +129,7 @@ public class AlumnoData {
 
     public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alumno = null;
-        String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE dni=? AND estado = 1";
+        String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento FROM alumno WHERE dni=? "; //AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -144,10 +142,13 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
-                alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                java.sql.Date fechaNacimientoSQL = rs.getDate("fechaNacimiento");
+                if (fechaNacimientoSQL != null) {
+                    alumno.setFechaNacimiento(fechaNacimientoSQL.toLocalDate());
+                }
                 alumno.setActivo(true);
             } else {
-                JOptionPane.showMessageDialog(null, "No existe el alumno");
+                //JOptionPane.showMessageDialog(null, "No existe el alumno");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -181,22 +182,44 @@ public class AlumnoData {
     }
        
     
-       public void eliminarAlumno(int id){
+    public void eliminarAlumno(int id){
 
-        String sql = "DELETE FROM alumno WHERE idAlumno = ? ";
+     String sql = "DELETE FROM alumno WHERE idAlumno = ? ";
+     try {
+
+         PreparedStatement ps = con.prepareStatement(sql);
+         ps.setInt(1, id);
+         ps.executeUpdate();
+         //JOptionPane.showMessageDialog(null, "Se ha eliminado el alumno");
+//            if(fila == 1) {
+         JOptionPane.showMessageDialog(null, "Se ha eliminado el alumno N°" + id);
+//            }
+         ps.close();
+     } catch (SQLException e) {
+         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");
+     }
+        
+        
+        
+    }
+    
+    public void desactivarAlumno(int id){
+        
         try {
-
+            String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
-            ps.executeUpdate();
-            //JOptionPane.showMessageDialog(null, "Se ha eliminado el alumno");
-//            if(fila == 1) {
-            JOptionPane.showMessageDialog(null, "Se ha eliminado el alumno N°" + id);
-//            }
+            int fila = ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha desactivado el alumno");
+            if(fila == 1) {
+                JOptionPane.showMessageDialog(null, "Se ha desactivado el alumno N°" + id);
+            }
             ps.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");
         }
     }
+
+    
 }
 

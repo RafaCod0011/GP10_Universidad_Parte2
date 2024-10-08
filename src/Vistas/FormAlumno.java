@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
 
 public class FormAlumno extends javax.swing.JInternalFrame {
     
+    AlumnoData movimientos = new AlumnoData();
+    Alumno encontrada= new Alumno();
+    
     public FormAlumno() {
         initComponents();
         
@@ -66,7 +69,7 @@ public class FormAlumno extends javax.swing.JInternalFrame {
 
         tbNombre.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
 
-        jbBuscar.setText("Buscar ID");
+        jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -233,7 +236,7 @@ public class FormAlumno extends javax.swing.JInternalFrame {
         
         }else{
         
-                AlumnoData movimiento = new AlumnoData();   
+                // AlumnoData movimiento = new AlumnoData();   
                 int respuesta = JOptionPane.showConfirmDialog(null
                     ,"¿Está seguro/a de Eliminar el alumno seleccionado?"
                     ,"Eliminar Alumno"
@@ -241,18 +244,18 @@ public class FormAlumno extends javax.swing.JInternalFrame {
 
                 if (respuesta == JOptionPane.YES_OPTION) {
                     int AlumnoEliminar= Integer.parseInt(tbID.getText());
-                    movimiento.eliminarAlumno(AlumnoEliminar);
+                    movimientos.eliminarAlumno(AlumnoEliminar);
                     Nuevo();
                 }
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        AlumnoData movimiento = new AlumnoData();
+
         
         int respuesta = JOptionPane.showConfirmDialog(null
-            ,"Va a grabar una nuevo alumno. ¿Esta Seguro/a?"
-            ,"Nuevo Alumno"
+            ,"Va a grabar los datos ingresados del alumno. ¿Esta Seguro/a?"
+            ,"Grabar Alumno"
             ,JOptionPane.YES_NO_OPTION);
         
         if(respuesta == JOptionPane.YES_OPTION){  
@@ -272,17 +275,33 @@ public class FormAlumno extends javax.swing.JInternalFrame {
                             return;
                         }
                     }
-                    java.util.Date Nfecha=JDate.getDate();
-                    LocalDate fechanac = Nfecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     
-                    int documento= Integer.parseInt(tbDNI.getText());
-                    Alumno AlumnoNuevo = new Alumno(documento, tbNombre.getText(),tbApellido.getText(),fechanac,jrEstado.isSelected()); 
+                    java.util.Date Nfecha = JDate.getDate();
+                    LocalDate fechanac = null;
+                    if (Nfecha != null) {
+                        fechanac = Nfecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    }
+                   
+                    int documento = Integer.parseInt(tbDNI.getText());
 
-                    movimiento.guardarAlumno(AlumnoNuevo);
-                    
-                    //Agregar ID del DNI
-                    tbID.setText(String.valueOf(AlumnoNuevo.getIdAlumno()));
-                    
+                    // Buscamos el alumno por DNI
+                    encontrada = movimientos.buscarAlumnoPorDni(documento);
+                    if (encontrada == null) {
+                        //Nuevo Alumno
+                        encontrada = new Alumno(documento, tbNombre.getText(), tbApellido.getText(), fechanac, jrEstado.isSelected());
+                        movimientos.guardarAlumno(encontrada);
+                        tbID.setText(String.valueOf(encontrada.getIdAlumno()));
+                    } else {
+                        //Alumno a modificar
+                        encontrada.setNombre(tbNombre.getText());
+                        encontrada.setApellido(tbApellido.getText());
+                        encontrada.setFechaNacimiento(fechanac);
+                        encontrada.setActivo(jrEstado.isSelected());
+                        movimientos.modificarAlumno(encontrada);
+                    }
+
+                    Nuevo(); 
+                    encontrada = null; 
                     
                 }
                 
@@ -295,35 +314,40 @@ public class FormAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        AlumnoData movimientos = new AlumnoData();
+
+               
+        //String respuesta = JOptionPane.showInputDialog(null, "Ingrese el ID del Alumno a buscar:", "Buscar Alumno", JOptionPane.PLAIN_MESSAGE);
+        if (tbDNI.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese el Documento a buscar en el campo correspondiente","Atención", JOptionPane.ERROR_MESSAGE);
+            tbDNI.requestFocus();
+        } else {
+
+            try {
+
+                int codigoBuscar= Integer.parseInt(tbDNI.getText());
+                encontrada = movimientos.buscarAlumnoPorDni(codigoBuscar);
                 
-        String respuesta = JOptionPane.showInputDialog(null, "Ingrese el ID del Alumno a buscar:", "Buscar Alumno", JOptionPane.PLAIN_MESSAGE);
-        
-        try {
-            if (respuesta==null){
-                return;
+                if (encontrada==null){
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado un alumno con el documento ingresado",
+                    "Corrobore la información", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    tbID.setText(String.valueOf(encontrada.getIdAlumno()));
+                    tbDNI.setText(String.valueOf(encontrada.getDni()));
+                    tbNombre.setText(encontrada.getNombre());
+                    tbApellido.setText(String.valueOf(encontrada.getApellido()));              
+                    jrEstado.setSelected(encontrada.isActivo());
+                    if (encontrada.getFechaNacimiento()!=null){
+                        java.util.Date fechaNacDate = java.util.Date.from(encontrada.getFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                        JDate.setDate(fechaNacDate);
+                    }    
+                }
+
+
+            } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Corrobore la información ingresada",
+                    "Formato Incorrecto", JOptionPane.ERROR_MESSAGE);
             }
-            int codigoBuscar= Integer.parseInt(respuesta);
-            Alumno encontrada = movimientos.buscarAlumno(codigoBuscar);
-            if (encontrada==null){
-                JOptionPane.showMessageDialog(null, "No se ha encontrado un alumno con el codigo ingresado",
-                "Corrobore la información", JOptionPane.ERROR_MESSAGE);
-            }else{
-                tbID.setText(String.valueOf(encontrada.getIdAlumno()));
-                tbDNI.setText(String.valueOf(encontrada.getDni()));
-                tbNombre.setText(encontrada.getNombre());
-                tbApellido.setText(String.valueOf(encontrada.getApellido()));              
-                jrEstado.setSelected(encontrada.isActivo());
-                java.util.Date fechaNacDate = java.util.Date.from(encontrada.getFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant());
-                JDate.setDate(fechaNacDate);
-            }
-           
-            
-        } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Corrobore la información ingresada",
-                "Formato Incorrecto", JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
