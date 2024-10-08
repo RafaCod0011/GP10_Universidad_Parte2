@@ -1,6 +1,6 @@
 package entidades;
 
-public class InscripcionMaterias {
+public class Inscripcion {
     
     // ATRIBUTOS
     private int idInscripcion;
@@ -9,11 +9,11 @@ public class InscripcionMaterias {
     private double nota;
     
     // CONSSTRUTOR VACIO
-    public InscripcionMaterias() {
+    public Inscripcion() {
     }
     
     // CONSSTRUTOR LLENO
-    public InscripcionMaterias(int idInscripcion, Alumno alumno, Materia materia, double nota) {
+    public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, double nota) {
         this.idInscripcion = idInscripcion;
         this.alumno = alumno;
         this.materia = materia;
@@ -21,7 +21,7 @@ public class InscripcionMaterias {
     }
     
     // CONSSTRUTOR SIN ID
-    public InscripcionMaterias(Alumno alumno, Materia materia, double nota) {
+    public Inscripcion(Alumno alumno, Materia materia, double nota) {
         this.alumno = alumno;
         this.materia = materia;
         this.nota = nota;

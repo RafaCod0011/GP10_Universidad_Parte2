@@ -204,9 +204,9 @@ public class AlumnoData {
     }
     
     public void desactivarAlumno(int id){
+        String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";      
         
         try {
-            String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
