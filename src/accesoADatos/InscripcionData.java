@@ -13,12 +13,18 @@ public class InscripcionData {
     private AlumnoData aluData;
     private MateriaData matData;
 
-    public InscripcionData(Conexion conexion, AlumnoData aluData, MateriaData matData) {
-        this.con = conexion.getConexion();
-        this.aluData = aluData;
-        this.matData = matData;
+    public InscripcionData() {
+        this.con = (Connection) Conexion.getConexion();
     }
-
+    
+//
+//   
+//    public InscripcionData(Conexion conexion, AlumnoData aluData, MateriaData matData) {
+//        this.con = conexion.getConexion();
+//        this.aluData = aluData;
+//        this.matData = matData;
+//    }
+    
     public void guardarInscripcion(Inscripcion insc) {
         String sql = "INSERT INTO inscripcion (idAlumno, idMateria, nota) VALUES (?, ?, ?)";
         try {

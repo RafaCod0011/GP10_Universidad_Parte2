@@ -2,6 +2,7 @@
 package Vistas;
 
 import accesoADatos.AlumnoData;
+import accesoADatos.InscripcionData;
 import accesoADatos.MateriaData;
 import entidades.*;
 import javax.swing.table.DefaultTableModel;
@@ -17,18 +18,21 @@ private DefaultTableModel materiaModel= new DefaultTableModel(){
     }
 };
     public FormInscripciones() {
+        
         initComponents();
         
         AlumnoData movAlumno = new AlumnoData();
         MateriaData movMateria =  new MateriaData();
-        
+        InscripcionData movInscripcion = new InscripcionData();
         
         //cbAlumno.add(movAlumno.listarAlumnos());
         armarCabecera();
         
         for (Alumno alumno : movAlumno.listarAlumnos()) {
-            cbAlumno.addItem(alumno.toString());
+            cbAlumno.addItem(alumno); 
         }
+        
+    
         
         vistaTabla.add(rbInscriptas);
         vistaTabla.add(rbNoInscriptas);
@@ -62,6 +66,12 @@ private DefaultTableModel materiaModel= new DefaultTableModel(){
         btAnular = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
 
+        cbAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAlumnoActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Seleccione un alumno:");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -80,6 +90,7 @@ private DefaultTableModel materiaModel= new DefaultTableModel(){
         ));
         jScrollPane1.setViewportView(tMaterias);
 
+        rbInscriptas.setSelected(true);
         rbInscriptas.setText("Inscriptas");
 
         rbNoInscriptas.setText("No inscriptas");
@@ -222,6 +233,13 @@ private DefaultTableModel materiaModel= new DefaultTableModel(){
     private void rbNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoInscriptasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbNoInscriptasActionPerformed
+
+    private void cbAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlumnoActionPerformed
+        Alumno alumnoSeleccionado = (Alumno) cbAlumno.getSelectedItem();
+        
+        
+        
+    }//GEN-LAST:event_cbAlumnoActionPerformed
     private void armarCabecera(){
 
             materiaModel.addColumn("ID");
@@ -244,7 +262,7 @@ private DefaultTableModel materiaModel= new DefaultTableModel(){
     private javax.swing.JButton btAnular;
     private javax.swing.JButton btInscribir;
     private javax.swing.JButton btSalir;
-    private javax.swing.JComboBox<String> cbAlumno;
+    private javax.swing.JComboBox<Alumno> cbAlumno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
