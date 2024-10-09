@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class InscripcionData {
     private Connection con;
@@ -33,12 +34,19 @@ public class InscripcionData {
             ps.setInt(2, insc.getMateria().getIdMateria());
             ps.setDouble(3, insc.getNota());
             ps.executeUpdate();
+            ResultSet rs=ps.getGeneratedKeys();
+            if(rs.next()){
+                insc.setIdInscripcion(rs.getInt(1));
+                 JOptionPane.showMessageDialog(null, "Inscripción Registrada");
+            }
+            ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion");
         }
     }
 
     public List<Inscripcion> obtenerInscripciones() {
+        
         List<Inscripcion> inscripciones = new ArrayList<>();
         String sql = "SELECT * FROM inscripcion";
         try {
@@ -51,7 +59,7 @@ public class InscripcionData {
                 inscripciones.add(inscripcion);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion");
         }
         return inscripciones;
     }
@@ -63,7 +71,10 @@ public class InscripcionData {
             ps.setDouble(1, nota);
             ps.setInt(2, idAlumno);
             ps.setInt(3, idMateria);
-            ps.executeUpdate();
+            int filas=ps.executeUpdate();
+            if (filas>0){
+                JOptionPane.showMessageDialog(null, "Nota Actualizada");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -75,7 +86,10 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
-            ps.executeUpdate();
+            int filas=ps.executeUpdate();
+            if (filas>0){
+                JOptionPane.showMessageDialog(null, "Inscripcion Eliminada");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
