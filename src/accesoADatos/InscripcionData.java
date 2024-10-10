@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ public class InscripcionData {
     public void guardarInscripcion(Inscripcion insc) {
         String sql = "INSERT INTO inscripcion (idAlumno, idMateria, nota) VALUES (?, ?, ?)";
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, insc.getAlumno().getIdAlumno());
             ps.setInt(2, insc.getMateria().getIdMateria());
             ps.setDouble(3, insc.getNota());
@@ -38,8 +39,10 @@ public class InscripcionData {
             ResultSet rs=ps.getGeneratedKeys();
             if(rs.next()){
                 insc.setIdInscripcion(rs.getInt(1));
-                 JOptionPane.showMessageDialog(null, "Inscripción Registrada");
+                 JOptionPane.showMessageDialog(null, "Inscripción Registrada" + rs.getInt(1));
             }
+
+            
             ps.close();
         } catch (SQLIntegrityConstraintViolationException ex) {
             JOptionPane.showMessageDialog(null, "La inscripción en la materia ya se encuentra registrada.");
