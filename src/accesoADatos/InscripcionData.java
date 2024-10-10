@@ -133,7 +133,7 @@ public class InscripcionData {
     
     public List<Materia> obtenerMateriasCursadas(int idAlumno){
         List<Materia> materias = new ArrayList<>();
-        String sql = "SELECT m.idMateria, m.nombre, m.año "
+        String sql = "SELECT m.idMateria, m.nombre, m.anio "
                + "FROM inscripcion i "
                + "JOIN materia m ON i.idMateria = m.idMateria "
                + "WHERE i.idAlumno = ?";
@@ -161,7 +161,7 @@ public class InscripcionData {
     
     public List<Materia> obtenerMateriasNoCursadas(int idAlumno){
         List<Materia> materias = new ArrayList<>();
-        String sql = "SELECT m.idMateria, m.nombre, m.año "
+        String sql = "SELECT m.idMateria, m.nombre, m.anio "
                + "FROM materia m "
                + "LEFT JOIN inscripcion i ON m.idMateria = i.idMateria AND i.idAlumno = ? "
                + "WHERE i.idMateria IS NULL";
