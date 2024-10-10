@@ -115,7 +115,7 @@ public class InscripcionData {
 		
 		    Inscripcion inscripcion = new Inscripcion();
 			
-			inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
+			inscripcion.setIdInscripcion(rs.getInt("idInscripto"));
 			
 			Materia materia = new Materia();
 			materia.setIdMateria(rs.getInt("IdMateria"));
