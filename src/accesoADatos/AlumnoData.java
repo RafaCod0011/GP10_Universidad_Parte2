@@ -170,7 +170,11 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
-                alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                java.sql.Date fechaNacimientoSQL = rs.getDate("fechaNacimiento");
+                if (fechaNacimientoSQL != null) {
+                    alumno.setFechaNacimiento(fechaNacimientoSQL.toLocalDate());
+                }
+                //alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setActivo(rs.getBoolean("estado"));
                 alumnos.add(alumno);
             }

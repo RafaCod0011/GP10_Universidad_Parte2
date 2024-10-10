@@ -190,8 +190,18 @@ private InscripcionData insData;
         );
 
         btInscribir.setText("Inscribir");
+        btInscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btInscribirActionPerformed(evt);
+            }
+        });
 
         btAnular.setText("Anular Inscripcion");
+        btAnular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAnularActionPerformed(evt);
+            }
+        });
 
         btSalir.setText("Salir");
         btSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -256,6 +266,13 @@ private InscripcionData insData;
         for (Materia m: listaM) {
                 materiaModel.addRow(new Object[] {m.getIdMateria(), m.getNombre(),m.getAnio()});
         }
+        
+        
+        btAnular.setEnabled(false);
+        btInscribir.setEnabled(true);
+        
+        
+        
     }
     private void cargarInscriptas(){
     
@@ -265,6 +282,8 @@ private InscripcionData insData;
         for (Materia m: listaM) {
                 materiaModel.addRow(new Object[] {m.getIdMateria(), m.getNombre(),m.getAnio()});
         }
+        btAnular.setEnabled(true);
+        btInscribir.setEnabled(false);
     }
     
     private void rbNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoInscriptasActionPerformed
@@ -290,6 +309,34 @@ private InscripcionData insData;
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         dispose();
     }//GEN-LAST:event_btSalirActionPerformed
+
+    private void btAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularActionPerformed
+
+
+        
+    }//GEN-LAST:event_btAnularActionPerformed
+
+    private void btInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscribirActionPerformed
+       
+        Alumno selec = (Alumno) cbAlumno.getSelectedItem();
+        int filaSeleccionada = tMaterias.getSelectedRow();
+        
+       
+        if (filaSeleccionada != -1) { // Controlamos que haya una fila seleccionada
+
+            int idMateria = (int )materiaModel.getValueAt(filaSeleccionada, 0);
+            String nombreM = (String) materiaModel.getValueAt(filaSeleccionada, 1);
+            int anioM = (int )materiaModel.getValueAt(filaSeleccionada, 2);
+
+            Materia m = new Materia(nombreM, anioM, true);
+            mData.guardarMateria(m);
+            Inscripcion in = new Inscripcion(selec, m, 0);
+            insData.guardarInscripcion(in);
+            cargarInscriptas();
+        }
+        
+        
+    }//GEN-LAST:event_btInscribirActionPerformed
     private void armarCabecera(){
 
             materiaModel.addColumn("ID");
