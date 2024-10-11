@@ -104,6 +104,7 @@ public class InscripcionData {
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno){
         List<Inscripcion> inscripciones = new ArrayList<>();
         String sql = "SELECT * FROM inscripcion WHERE idAlumno = ?";
+          
 	
 	try{
 	
@@ -115,10 +116,11 @@ public class InscripcionData {
 		
 		    Inscripcion inscripcion = new Inscripcion();
 			
-			inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
+			inscripcion.setIdInscripcion(rs.getInt("idInscripto"));
 			
 			Materia materia = new Materia();
 			materia.setIdMateria(rs.getInt("IdMateria"));
+                        
 			
 			Alumno alumno = new Alumno();
 			alumno.setIdAlumno(idAlumno);
@@ -155,6 +157,7 @@ public class InscripcionData {
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnio(rs.getInt("anio"));
+                
                 
                 materias.add(materia);
             }

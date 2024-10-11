@@ -1,23 +1,59 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package Vistas;
 
-/**
- *
- * @author Santino
- */
-public class FormCargaNotas extends javax.swing.JFrame {
+import accesoADatos.AlumnoData;
+import accesoADatos.InscripcionData;
+import accesoADatos.MateriaData;
+import entidades.Alumno;
+import entidades.Inscripcion;
+import entidades.Materia;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
-    /**
-     * Creates new form FormCargaNotas
-     */
+
+
+public class FormCargaNotas extends javax.swing.JInternalFrame {
+
+    private DefaultTableModel materiaModel= new DefaultTableModel(){
+
+    
+    @Override
+    public boolean isCellEditable(int f, int c){
+        
+        return false;
+    }
+};
+    
+    private AlumnoData aData;
+    private MateriaData mData;
+    private InscripcionData insData;
+    
+   private ArrayList<Alumno> listaA;
+   private ArrayList<Materia> listaM;
+   private ArrayList<Inscripcion>  listaI;
+    
     public FormCargaNotas() {
+        
+        initComponents();
         this.setTitle("Carga de Notas");
         this.setResizable(false);
-        initComponents();
-        // armarcabecera();
+        
+        armarCabecera();
+        
+        aData = new AlumnoData();
+        insData = new InscripcionData();
+        
+       for (Alumno alumno : aData.listarAlumnos()) {
+            cbAlumno.addItem(alumno); 
+        }
+        
+        
     }
 
     /**
@@ -33,13 +69,11 @@ public class FormCargaNotas extends javax.swing.JFrame {
         jLTitle = new javax.swing.JLabel();
         jLBarraTitle = new javax.swing.JLabel();
         jLSeleccionarAlumno = new javax.swing.JLabel();
-        jCBAlumnos = new javax.swing.JComboBox<>();
+        cbAlumno = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTAlumnos = new javax.swing.JTable();
+        tNotas = new javax.swing.JTable();
         jbGuardar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPGeneral.setBackground(new java.awt.Color(104, 124, 159));
         jPGeneral.setPreferredSize(new java.awt.Dimension(500, 500));
@@ -55,12 +89,16 @@ public class FormCargaNotas extends javax.swing.JFrame {
         jLSeleccionarAlumno.setForeground(new java.awt.Color(44, 61, 91));
         jLSeleccionarAlumno.setText("Seleccione un Alumno :");
 
-        jCBAlumnos.setBackground(new java.awt.Color(44, 61, 91));
-        jCBAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbAlumno.setBackground(new java.awt.Color(44, 61, 91));
+        cbAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAlumnoActionPerformed(evt);
+            }
+        });
 
-        jTAlumnos.setBackground(new java.awt.Color(44, 61, 91));
-        jTAlumnos.setForeground(new java.awt.Color(249, 249, 249));
-        jTAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        tNotas.setBackground(new java.awt.Color(44, 61, 91));
+        tNotas.setForeground(new java.awt.Color(249, 249, 249));
+        tNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -71,7 +109,7 @@ public class FormCargaNotas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTAlumnos);
+        jScrollPane1.setViewportView(tNotas);
 
         jbGuardar.setBackground(new java.awt.Color(221, 231, 244));
         jbGuardar.setText("Guardar!");
@@ -99,12 +137,11 @@ public class FormCargaNotas extends javax.swing.JFrame {
                                 .addGap(23, 23, 23)
                                 .addComponent(jLSeleccionarAlumno)
                                 .addGap(18, 18, 18)
-                                .addComponent(jCBAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPGeneralLayout.createSequentialGroup()
                                 .addGap(173, 173, 173)
-                                .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLBarraTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -118,7 +155,7 @@ public class FormCargaNotas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLSeleccionarAlumno)
-                    .addComponent(jCBAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -142,57 +179,62 @@ public class FormCargaNotas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormCargaNotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormCargaNotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormCargaNotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormCargaNotas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void cbAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlumnoActionPerformed
+        Alumno alumnoSeleccionado = (Alumno) cbAlumno.getSelectedItem();
+        cargarInscriptas();
+    }//GEN-LAST:event_cbAlumnoActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormCargaNotas().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jCBAlumnos;
+    private javax.swing.JComboBox<Alumno> cbAlumno;
     private javax.swing.JLabel jLBarraTitle;
     private javax.swing.JLabel jLSeleccionarAlumno;
     private javax.swing.JLabel jLTitle;
     private javax.swing.JPanel jPGeneral;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTAlumnos;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
+    private javax.swing.JTable tNotas;
     // End of variables declaration//GEN-END:variables
+
+ private void armarCabecera(){
+
+        materiaModel.addColumn("Codigo");
+        materiaModel.addColumn("Nombre");
+        materiaModel.addColumn("Nota");
+        tNotas.setModel(materiaModel);
+        TableColumnModel columnModel = tNotas.getColumnModel();
+        
+        columnModel.getColumn(0).setPreferredWidth(50);   // 
+        columnModel.getColumn(1).setPreferredWidth(180);  // 
+        columnModel.getColumn(2).setPreferredWidth(100);  // 
+    }
+ private void borrarFilaTabla(){
+        
+        int indice= materiaModel.getRowCount()-1;
+        for (int i = indice; i>=0; i--) {
+            materiaModel.removeRow(i);
+        }
+    }
+ 
+  private void cargarInscriptas(){
+    
+//        borrarFilaTabla();    
+//        Alumno selec = (Alumno) cbAlumno.getSelectedItem();
+//        listaM = (ArrayList) insData.obtenerMateriasCursadas(selec.getIdAlumno());
+//        listaI = (ArrayList) insData.obtenerInscripcionesPorAlumno(selec.getIdAlumno());
+//
+//                
+//        for (Inscripcion i: listaI) {
+//                int registro=  i.getMateria().getIdMateria();
+//                JOptionPane.showMessageDialog(this, "Materia " +  registro);
+//                Materia m = mData.buscarMateria(registro);
+//                String nombreMateria = m.getNombre();
+//                JOptionPane.showMessageDialog(this, "Materia " +  nombreMateria);
+//                
+//                materiaModel.addRow(new Object[] {i.getMateria().getIdMateria(), i.getMateria().getNombre(),i.getNota()});
+//                JOptionPane.showMessageDialog(this, "Materia " + i.getMateria().getNombre() +  "Nota  " + i.getNota());
+//        }
+//        
+    }
 }
-
-    //private void armarCabecera(){
-
-        //modeloA.addColumn("Codigo");
-        //modeloA.addColumn("Nombre");
-        //modeloA.addColumn("Nota");
-    //}

@@ -162,7 +162,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_FormInscripcionesActionPerformed
 
     private void FormNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormNotasActionPerformed
-        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormCargaNotas notas = new FormCargaNotas();
+        notas.setVisible(true);
+        escritorio.add(notas);
+        escritorio.moveToFront(notas);
     }//GEN-LAST:event_FormNotasActionPerformed
 
     /**
