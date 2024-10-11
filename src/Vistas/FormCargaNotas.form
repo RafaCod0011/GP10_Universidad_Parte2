@@ -82,7 +82,7 @@
                   <Component id="jLTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLBarraTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLSeleccionarAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbAlumno" alignment="3" min="-2" max="-2" attributes="0"/>

@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Users/Usuario/Documents/GitHub/GP10_Universidad_Parte2/src/accesoADatos/InscripcionData.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/GP10_Universidad_Parte2/src/accesoADatos/MateriaData.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/GP10_Universidad_Parte2/src/accesoADatos/AlumnoData.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/GP10_Universidad_Parte2/src/Vistas/FormInscripciones.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/GP10_Universidad_Parte2/src/accesoADatos/Conexion.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/GP10_Universidad_Parte2/src/Vistas/FormAlumno.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/GP10_Universidad_Parte2/src/Vistas/FormCargaNotas.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/GP10_Universidad_Parte2/src/Vistas/FormMateria.java</file>
         </group>
     </open-files>
