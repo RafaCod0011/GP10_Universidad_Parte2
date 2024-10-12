@@ -38,23 +38,22 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
         jtListado = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
 
-        jpPrinicpal.setBackground(new java.awt.Color(104, 124, 159));
-
-        jlTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jlTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlTitle.setForeground(new java.awt.Color(21, 37, 63));
         jlTitle.setText("Listado de Alumno por Materia");
 
         jlSeparador.setForeground(new java.awt.Color(44, 61, 91));
         jlSeparador.setText("_________________________________________________________________________________________________________________");
 
-        jlSeleccionMateria.setFont(new java.awt.Font("Arial", 2, 15)); // NOI18N
-        jlSeleccionMateria.setForeground(new java.awt.Color(44, 61, 91));
+        jlSeleccionMateria.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jlSeleccionMateria.setForeground(new java.awt.Color(51, 51, 225));
         jlSeleccionMateria.setText("Seleccione una Materia :");
 
         jcbMaterias.setBackground(new java.awt.Color(44, 61, 91));
-        jcbMaterias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbMaterias.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         jtListado.setBackground(new java.awt.Color(44, 61, 91));
+        jtListado.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jtListado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -69,6 +68,7 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtListado);
 
         jbSalir.setBackground(new java.awt.Color(221, 231, 244));
+        jbSalir.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,22 +82,21 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
             jpPrinicpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrinicpalLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addComponent(jlSeleccionMateria)
+                .addGap(18, 18, 18)
+                .addComponent(jcbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
             .addGroup(jpPrinicpalLayout.createSequentialGroup()
                 .addGroup(jpPrinicpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlSeparador, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpPrinicpalLayout.createSequentialGroup()
-                        .addGap(106, 106, 106)
+                        .addGap(147, 147, 147)
                         .addComponent(jlTitle))
                     .addGroup(jpPrinicpalLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jlSeleccionMateria)
-                        .addGap(18, 18, 18)
-                        .addComponent(jcbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpPrinicpalLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jlSeparador, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(60, 60, 60)
+                        .addGroup(jpPrinicpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPrinicpalLayout.setVerticalGroup(
@@ -107,15 +106,15 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
                 .addComponent(jlTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlSeparador)
-                .addGap(71, 71, 71)
+                .addGap(30, 30, 30)
                 .addGroup(jpPrinicpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlSeleccionMateria)
-                    .addComponent(jcbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlSeleccionMateria))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

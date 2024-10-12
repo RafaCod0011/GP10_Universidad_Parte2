@@ -70,21 +70,26 @@ public class InscripcionData {
         return inscripciones;
     }
 
-    public void actualizarNota(int idAlumno, int idMateria, double nota) {
-        String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setDouble(1, nota);
-            ps.setInt(2, idAlumno);
-            ps.setInt(3, idMateria);
-            int filas=ps.executeUpdate();
-            if (filas>0){
-                JOptionPane.showMessageDialog(null, "Nota Actualizada");
+        public void actualizarNota(int idAlumno, int idMateria, double nota) {
+            String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setDouble(1, nota);
+                ps.setInt(2, idAlumno);
+                ps.setInt(3, idMateria);
+                
+               
+                
+                int filas=ps.executeUpdate();
+                if (filas>0){
+                    JOptionPane.showMessageDialog(null, "Nota Actualizada");
+                }else{
+                     JOptionPane.showMessageDialog(null, "No se actualizó la nota. Revisa los IDs y la nota.");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-    }
 
     public void eliminarInscripcion(int idAlumno, int idMateria) {
         String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
