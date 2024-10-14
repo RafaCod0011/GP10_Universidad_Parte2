@@ -39,9 +39,8 @@ public class InscripcionData {
             ResultSet rs=ps.getGeneratedKeys();
             if(rs.next()){
                 insc.setIdInscripcion(rs.getInt(1));
-                 JOptionPane.showMessageDialog(null, "Inscripción Registrada" + rs.getInt(1));
+                 JOptionPane.showMessageDialog(null, "Inscripción Registrada");
             }
-
             
             ps.close();
         } catch (SQLIntegrityConstraintViolationException ex) {
@@ -77,9 +76,7 @@ public class InscripcionData {
                 ps.setDouble(1, nota);
                 ps.setInt(2, idAlumno);
                 ps.setInt(3, idMateria);
-                
-               
-                
+
                 int filas=ps.executeUpdate();
                 if (filas>0){
                     JOptionPane.showMessageDialog(null, "Nota Actualizada");
@@ -97,6 +94,7 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
+                      
             int filas=ps.executeUpdate();
             if (filas>0){
                 JOptionPane.showMessageDialog(null, "Inscripcion Eliminada");

@@ -36,7 +36,7 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
         jcbMaterias = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtListado = new javax.swing.JTable();
-        jbSalir = new javax.swing.JButton();
+        btSalir = new javax.swing.JButton();
 
         jlTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlTitle.setForeground(new java.awt.Color(21, 37, 63));
@@ -49,10 +49,6 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
         jlSeleccionMateria.setForeground(new java.awt.Color(51, 51, 225));
         jlSeleccionMateria.setText("Seleccione una Materia :");
 
-        jcbMaterias.setBackground(new java.awt.Color(44, 61, 91));
-        jcbMaterias.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-
-        jtListado.setBackground(new java.awt.Color(44, 61, 91));
         jtListado.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jtListado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,12 +63,10 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtListado);
 
-        jbSalir.setBackground(new java.awt.Color(221, 231, 244));
-        jbSalir.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jbSalir.setText("Salir");
-        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+        btSalir.setText("Salir");
+        btSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalirActionPerformed(evt);
+                btSalirActionPerformed(evt);
             }
         });
 
@@ -80,12 +74,6 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
         jpPrinicpal.setLayout(jpPrinicpalLayout);
         jpPrinicpalLayout.setHorizontalGroup(
             jpPrinicpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrinicpalLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlSeleccionMateria)
-                .addGap(18, 18, 18)
-                .addComponent(jcbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
             .addGroup(jpPrinicpalLayout.createSequentialGroup()
                 .addGroup(jpPrinicpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlSeparador, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,10 +82,19 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
                         .addComponent(jlTitle))
                     .addGroup(jpPrinicpalLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addGroup(jpPrinicpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrinicpalLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jpPrinicpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrinicpalLayout.createSequentialGroup()
+                        .addComponent(jlSeleccionMateria)
+                        .addGap(18, 18, 18)
+                        .addComponent(jcbMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrinicpalLayout.createSequentialGroup()
+                        .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))))
         );
         jpPrinicpalLayout.setVerticalGroup(
             jpPrinicpalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,8 +110,8 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -131,14 +128,14 @@ public class FormAlumMateria extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbSalirActionPerformed
+    private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
+       dispose();
+    }//GEN-LAST:event_btSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btSalir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<String> jcbMaterias;
     private javax.swing.JLabel jlSeleccionMateria;
     private javax.swing.JLabel jlSeparador;

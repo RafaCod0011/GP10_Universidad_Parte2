@@ -39,7 +39,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         FormInscripciones = new javax.swing.JMenuItem();
         FormNotas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        FormConsultas = new javax.swing.JMenuItem();
+        FormAlumMateria = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,8 +110,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Consultas");
 
-        FormConsultas.setText("Alumnos por Materia");
-        jMenu4.add(FormConsultas);
+        FormAlumMateria.setText("Alumnos por Materia");
+        FormAlumMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FormAlumMateriaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(FormAlumMateria);
 
         jMenuBar1.add(jMenu4);
 
@@ -170,6 +175,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(notas);
     }//GEN-LAST:event_FormNotasActionPerformed
 
+    private void FormAlumMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormAlumMateriaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormAlumMateria alumnoMateria = new FormAlumMateria();
+        alumnoMateria.setVisible(true);
+        escritorio.add(alumnoMateria);
+        escritorio.moveToFront(alumnoMateria); 
+        
+        
+    }//GEN-LAST:event_FormAlumMateriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -207,7 +223,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem FormConsultas;
+    private javax.swing.JMenuItem FormAlumMateria;
     private javax.swing.JMenuItem FormInscripciones;
     private javax.swing.JMenuItem FormNotas;
     private javax.swing.JMenu MenuAdminstracion;

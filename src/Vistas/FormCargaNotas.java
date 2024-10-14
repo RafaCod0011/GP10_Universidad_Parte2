@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package Vistas;
 
 import accesoADatos.AlumnoData;
@@ -70,13 +66,14 @@ public class FormCargaNotas extends javax.swing.JInternalFrame {
         cbAlumno = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tNotas = new javax.swing.JTable();
-        jbGuardar = new javax.swing.JButton();
-        jbSalir = new javax.swing.JButton();
+        btGuardar = new javax.swing.JButton();
+        btSalir = new javax.swing.JButton();
 
         jPGeneral.setPreferredSize(new java.awt.Dimension(500, 500));
 
         jLTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLTitle.setForeground(new java.awt.Color(21, 37, 63));
+        jLTitle.setForeground(new java.awt.Color(51, 51, 255));
+        jLTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLTitle.setText("Carga de notas");
 
         jLBarraTitle.setForeground(new java.awt.Color(44, 61, 91));
@@ -86,7 +83,6 @@ public class FormCargaNotas extends javax.swing.JInternalFrame {
         jLSeleccionarAlumno.setForeground(new java.awt.Color(51, 51, 255));
         jLSeleccionarAlumno.setText("Seleccione un Alumno :");
 
-        cbAlumno.setBackground(new java.awt.Color(44, 61, 91));
         cbAlumno.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         cbAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,9 +90,7 @@ public class FormCargaNotas extends javax.swing.JInternalFrame {
             }
         });
 
-        tNotas.setBackground(new java.awt.Color(44, 61, 91));
         tNotas.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        tNotas.setForeground(new java.awt.Color(249, 249, 249));
         tNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -110,21 +104,17 @@ public class FormCargaNotas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tNotas);
 
-        jbGuardar.setBackground(new java.awt.Color(221, 231, 244));
-        jbGuardar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jbGuardar.setText("Guardar!");
-        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btGuardar.setText("Guardar");
+        btGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbGuardarActionPerformed(evt);
+                btGuardarActionPerformed(evt);
             }
         });
 
-        jbSalir.setBackground(new java.awt.Color(221, 231, 244));
-        jbSalir.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jbSalir.setText("Salir");
-        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+        btSalir.setText("Salir");
+        btSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalirActionPerformed(evt);
+                btSalirActionPerformed(evt);
             }
         });
 
@@ -132,48 +122,48 @@ public class FormCargaNotas extends javax.swing.JInternalFrame {
         jPGeneral.setLayout(jPGeneralLayout);
         jPGeneralLayout.setHorizontalGroup(
             jPGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPGeneralLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
             .addGroup(jPGeneralLayout.createSequentialGroup()
                 .addGroup(jPGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPGeneralLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addGroup(jPGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPGeneralLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLSeleccionarAlumno)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPGeneralLayout.createSequentialGroup()
-                                .addGap(173, 173, 173)
-                                .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLBarraTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPGeneralLayout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(jLTitle)))
+                        .addContainerGap()
+                        .addComponent(jLTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPGeneralLayout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(jLSeleccionarAlumno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPGeneralLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPGeneralLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btGuardar, btSalir});
+
         jPGeneralLayout.setVerticalGroup(
             jPGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPGeneralLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(jLTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLBarraTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLSeleccionarAlumno)
-                    .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLSeleccionarAlumno))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addGroup(jPGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                    .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +174,9 @@ public class FormCargaNotas extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -210,8 +202,7 @@ public class FormCargaNotas extends javax.swing.JInternalFrame {
         cargarInscriptas();
     }//GEN-LAST:event_cbAlumnoActionPerformed
 
-    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        
+    private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
           int filaSeleccionada = tNotas.getSelectedRow();
           
         if (filaSeleccionada != -1) {
@@ -235,22 +226,22 @@ public class FormCargaNotas extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona una fila.");
         }
-    }//GEN-LAST:event_jbGuardarActionPerformed
+    }//GEN-LAST:event_btGuardarActionPerformed
 
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-       dispose();
-    }//GEN-LAST:event_jbSalirActionPerformed
+    private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btSalirActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btGuardar;
+    private javax.swing.JButton btSalir;
     private javax.swing.JComboBox<Alumno> cbAlumno;
     private javax.swing.JLabel jLBarraTitle;
     private javax.swing.JLabel jLSeleccionarAlumno;
     private javax.swing.JLabel jLTitle;
     private javax.swing.JPanel jPGeneral;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbGuardar;
-    private javax.swing.JButton jbSalir;
     private javax.swing.JTable tNotas;
     // End of variables declaration//GEN-END:variables
 

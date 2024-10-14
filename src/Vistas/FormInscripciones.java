@@ -42,6 +42,8 @@ private InscripcionData insData;
         //Agregamos los radio buttons a un grupo de Radio Buttons vistaTabla
         vistaTabla.add(rbInscriptas);
         vistaTabla.add(rbNoInscriptas);
+        rbInscriptas.isSelected();
+        
         
         cargarInscriptas();
         
@@ -103,6 +105,7 @@ private InscripcionData insData;
         jScrollPane1.setViewportView(tMaterias);
 
         rbInscriptas.setForeground(new java.awt.Color(51, 51, 255));
+        rbInscriptas.setSelected(true);
         rbInscriptas.setText("Inscriptas");
         rbInscriptas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,13 +128,13 @@ private InscripcionData insData;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rbInscriptas)
-                .addGap(102, 102, 102)
+                .addGap(87, 87, 87)
                 .addComponent(rbNoInscriptas)
-                .addGap(192, 192, 192))
+                .addGap(207, 207, 207))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +179,7 @@ private InscripcionData insData;
                 .addGap(62, 62, 62)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -279,6 +282,7 @@ private InscripcionData insData;
     
     private void cargarNoInscriptas(){
     
+        
         borrarFilaTabla();    
         Alumno selec = (Alumno) cbAlumno.getSelectedItem();
         listaM = (ArrayList) insData.obtenerMateriasNoCursadas(selec.getIdAlumno());
@@ -335,20 +339,55 @@ private InscripcionData insData;
 
     private void btAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularActionPerformed
 
+        Alumno selec = (Alumno) cbAlumno.getSelectedItem();
+        int filaSeleccionada = tMaterias.getSelectedRow();
+         
+        
+        if (filaSeleccionada != -1) { // Controlamos que haya una fila seleccionada
+
+             String nombreM = (String) materiaModel.getValueAt(filaSeleccionada, 1);
+              int respuesta = JOptionPane.showConfirmDialog(null
+                ,"Va a anular la inscripción del alumno " + selec.getApellido() + " " + selec.getNombre() + ", en la materia " + nombreM
+                ,"Confirme inscripción"
+                ,JOptionPane.YES_NO_OPTION);
+
+            if (respuesta == JOptionPane.YES_OPTION) {
+            
+                int idMateria = (int )materiaModel.getValueAt(filaSeleccionada, 0);
+
+                int anioM = (int )materiaModel.getValueAt(filaSeleccionada, 2);
+
+                //Materia m = new Materia(idMateria, nombreM, anioM, true); // Asigna el idMateria
+                //Inscripcion in = new Inscripcion(selec, m, 0);
+
+                insData.eliminarInscripcion(selec.getIdAlumno(), idMateria);
+                cargarInscriptas();
+            }    
+        }
+        
 
         
     }//GEN-LAST:event_btAnularActionPerformed
 
     private void btInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscribirActionPerformed
        
+        
         Alumno selec = (Alumno) cbAlumno.getSelectedItem();
         int filaSeleccionada = tMaterias.getSelectedRow();
          
+        
         if (filaSeleccionada != -1) { // Controlamos que haya una fila seleccionada
 
+             String nombreM = (String) materiaModel.getValueAt(filaSeleccionada, 1);
+              int respuesta = JOptionPane.showConfirmDialog(null
+                ,"Va a inscribir al alumno " + selec.getApellido() + " " + selec.getNombre() + ", en la materia " + nombreM
+                ,"Confirme inscripción"
+                ,JOptionPane.YES_NO_OPTION);
+
+            if (respuesta == JOptionPane.YES_OPTION) {
             
                 int idMateria = (int )materiaModel.getValueAt(filaSeleccionada, 0);
-                String nombreM = (String) materiaModel.getValueAt(filaSeleccionada, 1);
+
                 int anioM = (int )materiaModel.getValueAt(filaSeleccionada, 2);
 
                 Materia m = new Materia(idMateria, nombreM, anioM, true); // Asigna el idMateria
@@ -356,6 +395,8 @@ private InscripcionData insData;
                 Inscripcion in = new Inscripcion(selec, m, 0);
                 insData.guardarInscripcion(in);
                 cargarInscriptas();
+                rbInscriptas.setSelected(true);
+            }    
         }
         
         
