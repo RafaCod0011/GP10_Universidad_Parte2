@@ -146,15 +146,14 @@ public class AlumnoData {
                     alumno.setFechaNacimiento(fechaNacimientoSQL.toLocalDate());
                 }
                 alumno.setActivo(true);
-            } else {
-                //JOptionPane.showMessageDialog(null, "No existe el alumno");
             }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
         }
-
+ 
         return alumno;
+        
     }
 
     public List<Alumno> listarAlumnos() {
@@ -173,7 +172,6 @@ public class AlumnoData {
                 if (fechaNacimientoSQL != null) {
                     alumno.setFechaNacimiento(fechaNacimientoSQL.toLocalDate());
                 }
-                //alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setActivo(rs.getBoolean("estado"));
                 alumnos.add(alumno);
             }
@@ -185,26 +183,26 @@ public class AlumnoData {
     }
        
     
-    public void eliminarAlumno(int id){
+    public void eliminarAlumno(int id) {
+        String sql = "DELETE FROM alumno WHERE idAlumno = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int filas = ps.executeUpdate();
 
-     String sql = "DELETE FROM alumno WHERE idAlumno = ? ";
-     try {
-
-         PreparedStatement ps = con.prepareStatement(sql);
-         ps.setInt(1, id);
-         ps.executeUpdate();
-         //JOptionPane.showMessageDialog(null, "Se ha eliminado el alumno");
-//            if(fila == 1) {
-         JOptionPane.showMessageDialog(null, "Se ha eliminado el alumno N°" + id);
-//            }
-         ps.close();
-     } catch (SQLException e) {
-         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");
-     }
-        
-        
-        
+            if (filas > 0) {
+                JOptionPane.showMessageDialog(null, "Se ha eliminado el alumno N°" + id);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró ningún alumno con el ID proporcionado.");
+            }
+            ps.close();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el alumno N°" + id + " porque está referenciado en otra tabla (ej: inscripciones).", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al intentar eliminar el alumno.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
     
     public void desactivarAlumno(int id){
         String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";      

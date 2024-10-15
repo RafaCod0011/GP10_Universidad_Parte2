@@ -195,57 +195,58 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         
-        MateriaData movimientos = new MateriaData();
-        
+         MateriaData movimientos = new MateriaData();
+
         int respuesta = JOptionPane.showConfirmDialog(null
-            ,"Va a grabar una nueva materia ¿Está seguro/a?"
-            ,"Nueva Materia"
+            ,"Va a grabar los datos ingresados de la materia. ¿Está seguro/a?"
+            ,"Grabar Materia"
             ,JOptionPane.YES_NO_OPTION);
 
         if (respuesta == JOptionPane.YES_OPTION) {
-    
             try {
-
-                    if (tbNombre.getText().isEmpty() || tbAnio.getText().isEmpty()){
-                        JOptionPane.showMessageDialog(null, "Complete los datos de la Materia","Atención", JOptionPane.ERROR_MESSAGE);
-                    }else{
-                        if (jrEstado.isSelected()==false){
-
-                            int materiaActiva = JOptionPane.showConfirmDialog(null
+                if (tbNombre.getText().isEmpty() || tbAnio.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Complete los datos de la Materia", "Atención", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if (!jrEstado.isSelected()) {
+                        int materiaActiva = JOptionPane.showConfirmDialog(null
                                 ,"¿Está seguro/a de iniciar la nueva materia como INACTIVA?"
                                 ,"Materia Inactiva"
                                 ,JOptionPane.YES_NO_OPTION);
 
-                            if (materiaActiva == JOptionPane.NO_OPTION) {
-                                jrEstado.isSelected();
-                                jrEstado.requestFocus();
-                                return;
-
-                            }
-
+                        if (materiaActiva == JOptionPane.NO_OPTION) {
+                            jrEstado.setSelected(true);
+                            jrEstado.requestFocus();
+                            return;
                         }
-                        int anio= Integer.parseInt(tbAnio.getText());
-                        Materia materiaNueva = new Materia(tbNombre.getText().toUpperCase(), anio, jrEstado.isSelected());
-                        movimientos.guardarMateria(materiaNueva);
-
-                        //Asignamos el ID al CODIGO
-                        tbCodigo.setText(String.valueOf(materiaNueva.getIdMateria()));
-
-        //                for (Materia materia : movimientos.listarMaterias()) {
-        //                    System.out.println(materia.getNombre()+ " - " + materia.getAnio());
-        //                    
-        //                }
-
                     }
 
 
+                    int anio = Integer.parseInt(tbAnio.getText());
 
-                } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Corrobore la información ingresada",
-                        "Formato Incorrecto", JOptionPane.ERROR_MESSAGE);
+
+                    int codigoBuscar= Integer.parseInt(tbCodigo.getText());
+                    Materia encontrada = movimientos.buscarMateria(codigoBuscar);
+                    
+                    if (encontrada == null) {
+                        // Materia nueva
+                        Materia materiaNueva = new Materia(tbNombre.getText().toUpperCase(), anio, jrEstado.isSelected());
+                        movimientos.guardarMateria(materiaNueva);
+                        tbCodigo.setText(String.valueOf(materiaNueva.getIdMateria()));
+                    } else {
+                        // Materia existente, se modifica
+                        encontrada.setNombre(tbNombre.getText().toUpperCase());
+                        encontrada.setAnio(anio);
+                        encontrada.setEstado(jrEstado.isSelected());
+                        movimientos.modificarMateria(encontrada);
+                        tbCodigo.setText(String.valueOf(encontrada.getIdMateria()));
+                    }
                 }
-
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Corrobore la información ingresada", "Formato Incorrecto", JOptionPane.ERROR_MESSAGE);
             }
+        }
+
+
 
            
     }//GEN-LAST:event_jbGuardarActionPerformed

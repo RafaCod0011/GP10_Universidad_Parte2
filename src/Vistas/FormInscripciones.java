@@ -316,7 +316,7 @@ private InscripcionData insData;
 
     private void cbAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlumnoActionPerformed
        
-        //Alumno alumnoSeleccionado = (Alumno) cbAlumno.getSelectedItem();
+
         if (cbAlumno.getSelectedIndex()!= -1){
             if (rbInscriptas.isSelected()){
                 cargarInscriptas();
@@ -416,6 +416,7 @@ private InscripcionData insData;
             columnModel.getColumn(2).setPreferredWidth(100);  // "Año"
 
         }
+    
     private void borrarFilaTabla(){
         
         int indice= materiaModel.getRowCount()-1;
